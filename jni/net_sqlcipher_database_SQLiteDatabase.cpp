@@ -20,6 +20,7 @@
 #include <jni.h>
 #include <sqlite3.h>
 #include <ctype.h>
+#include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
 #include <sys/types.h>

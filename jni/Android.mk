@@ -5,7 +5,7 @@ LOCAL_PATH := $(MY_PATH)
 SQLCIPHER_DIR := $(LOCAL_PATH)/../external/sqlcipher
 SQLCIPHER_SRC := $(SQLCIPHER_DIR)/sqlite3.c
 
-LOCAL_CFLAGS +=  $(SQLCIPHER_CFLAGS) -DLOG_NDEBUG
+LOCAL_CFLAGS +=  $(SQLCIPHER_CFLAGS) -DLOG_NDEBUG -DJNI_OnLoad=SQLCipher_JNI_OnLoad
 LOCAL_C_INCLUDES := $(SQLCIPHER_DIR) $(LOCAL_PATH)
 LOCAL_LDLIBS := -llog -latomic
 LOCAL_LDFLAGS += -L$(LOCAL_PATH)/android-libs/$(TARGET_ARCH_ABI) -fuse-ld=bfd
@@ -21,7 +21,7 @@ LOCAL_SRC_FILES := $(SQLCIPHER_SRC) \
 	net_sqlcipher_CursorWindow.cpp \
 	CursorWindow.cpp
 
-include $(BUILD_SHARED_LIBRARY)
+include $(BUILD_STATIC_LIBRARY)
 
 include $(CLEAR_VARS)
 LOCAL_MODULE := static-libcrypto
